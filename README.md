@@ -1,13 +1,16 @@
 # gan_practice
 dcgan,wgan and improved wgan implementation by tensorflow
 
-# how to use
-1.download MNIST data from http://yann.lecun.com/exdb/mnist/ and unzip data to some dir
-  for example: data
-                   \_10k-images-idx3-ubyte
-                   \_train-images-idx3-ubyte
+# data preparation
+download MNIST data from http://yann.lecun.com/exdb/mnist/ and unzip data to some dir,for example
+```sh
+data
+ 10k-images-idx3-ubyte
+ train-images-idx3-ubyte
+```
 
 # training
+```sh
 python dcgan.py or wgan.py or wgan_gp.py \
                 --data_path=data \
                 --mode=train \
@@ -15,8 +18,10 @@ python dcgan.py or wgan.py or wgan_gp.py \
                 --batch_size=100 \
                 --epoch_num=100 \
                 --rand_dim=128
+```
 
 # generating
+```sh
 python dcgan.py or wgan.py or wgan_gp.py \
                 --data_path=data \
                 --mode=infer \
@@ -24,11 +29,12 @@ python dcgan.py or wgan.py or wgan_gp.py \
                 --batch_size=100 \
                 --epoch_num=100 \
                 --rand_dim=128
+```
 
 # some results
-* dcgan 100 epoch
-* wgan 100 epoch
-* improved wgan epoch
+* dcgan 100 epoch results
+* wgan 100 epoch results
+* improved wgan epoch results
 
 # reference
 * Generative Adversarial Nets
