@@ -1,5 +1,5 @@
 # gan_practice
-dcgan,wgan and improved wgan implementation by tensorflow
+simple dcgan,wgan and improved wgan implementation by tensorflow, this is for practice purpose
 
 # data preparation
 download MNIST data from http://yann.lecun.com/exdb/mnist/ and unzip data to some dir,for example
