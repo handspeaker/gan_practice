@@ -31,12 +31,12 @@ python dcgan.py or wgan.py or wgan_gp.py \
 3.improved wgan epoch
 
 # reference
-Generative Adversarial Nets
-Unsupervised Representation Learning with Deep Convolutional Generative Adversarial Networks
-Wasserstein GAN
-Improved Training of Wasserstein GANs
-https://github.com/carpedm20/DCGAN-tensorflow
-https://github.com/shekkizh/WassersteinGAN.tensorflow
-https://github.com/igul222/improved_wgan_training
+* Generative Adversarial Nets
+* Unsupervised Representation Learning with Deep Convolutional Generative Adversarial Networks
+* Wasserstein GAN
+* Improved Training of Wasserstein GANs
+* https://github.com/carpedm20/DCGAN-tensorflow
+* https://github.com/shekkizh/WassersteinGAN.tensorflow
+* https://github.com/igul222/improved_wgan_training
 
 
