@@ -26,9 +26,9 @@ python dcgan.py or wgan.py or wgan_gp.py \
                 --rand_dim=128
 
 # some results
-1.dcgan 100 epoch
-2.wgan 100 epoch
-3.improved wgan epoch
+* dcgan 100 epoch
+* wgan 100 epoch
+* improved wgan epoch
 
 # reference
 * Generative Adversarial Nets
