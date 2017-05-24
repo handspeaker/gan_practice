@@ -156,8 +156,8 @@ def train(args):
         test_image = all_test_image[rand_arr]
         test_image = np.lib.pad(test_image, ((0, 0), (2, 2), (2, 2), (0, 0)), 'constant',
                                 constant_values=(-1, -1))
-        test_noise = np.random.uniform(-1.0, 1.0, size=[10, random_dim]).astype(np.float32)
-        test_alpha = np.random.uniform(0.0, 1.0, size=[10, 1, 1, 1]).astype(np.float32)
+        test_noise = np.random.uniform(-1.0, 1.0, size=[100, random_dim]).astype(np.float32)
+        test_alpha = np.random.uniform(0.0, 1.0, size=[100, 1, 1, 1]).astype(np.float32)
         test_gLoss, test_dLoss, gen_images = sess.run([g_loss, d_loss, fake_image],
                                                       feed_dict={random_input: test_noise,
                                                                  real_image: test_image,
