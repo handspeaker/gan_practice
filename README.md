@@ -1,5 +1,5 @@
 # gan_practice
-simple dcgan,wgan and improved wgan implementation by tensorflow, this is for practice purpose
+simple dcgan,wgan and improved wgan implementation by tensorflow, this is for practice purpose. tensorflow version=1.1.0
 
 # data preparation
 download MNIST data from http://yann.lecun.com/exdb/mnist/ and unzip data to some dir,for example
@@ -40,7 +40,7 @@ python dcgan.py or wgan.py or wgan_gp.py \
 <p align="center">
 <img src="assets/wgan_results.jpg" width="320"/>
 </p>
-* improved wgan epoch results
+* improved wgan 100 epoch results
 <p align="center">
 <img src="assets/wgangp_results.jpg" width="320"/>
 </p>
