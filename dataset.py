@@ -5,9 +5,24 @@ import struct
 import scipy.misc
 
 
-def save_img(img, save_path, image_id):
-    img = (img + 1.0) / 2.0
-    scipy.misc.imsave(save_path + '/' + str(image_id) + '.jpg', img.reshape([img.shape[0], -1]))
+def render_fonts_image(x, path, img_per_row, unit_scale=True):
+    if unit_scale:
+        # scale 0-1 matrix back to gray scale bitmaps
+        bitmaps = (x * 255.).astype(dtype=np.int16) % 256
+    else:
+        bitmaps = x
+    num_imgs, h, w = x.shape
+    width = img_per_row * w
+    height = int(np.ceil(float(num_imgs) / img_per_row)) * h
+    canvas = np.zeros(shape=(height, width), dtype=np.int16)
+    # make the canvas all white
+    canvas.fill(0)
+    for idx, bm in enumerate(bitmaps):
+        x = h * int(idx / img_per_row)
+        y = w * int(idx % img_per_row)
+        canvas[x: x + h, y: y + w] = bm
+    scipy.misc.toimage(canvas).save(path)
+    return path
 
 
 def read_mnist_data(path):

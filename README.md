@@ -33,8 +33,17 @@ python dcgan.py or wgan.py or wgan_gp.py \
 
 # some results
 * dcgan 100 epoch results
+<p align="center">
+<img src="assets/dcgan_results.jpg" width="320"/>
+</p>
 * wgan 100 epoch results
+<p align="center">
+<img src="assets/wgan_results.jpg" width="320"/>
+</p>
 * improved wgan epoch results
+<p align="center">
+<img src="assets/wgangp_results.jpg" width="320"/>
+</p>
 
 # reference
 * Generative Adversarial Nets

@@ -6,8 +6,7 @@ import os
 import argparse
 import tensorflow as tf
 import numpy as np
-import shutil
-from dataset import MnistProvider, save_img
+from dataset import MnistProvider, render_fonts_image
 from ops import lrelu
 
 LAMBDA = 10
@@ -161,41 +160,36 @@ def train(args):
         test_gLoss, test_dLoss, gen_images = sess.run([g_loss, d_loss, fake_image],
                                                       feed_dict={random_input: test_noise,
                                                                  real_image: test_image,
-                                                                 alpha:test_alpha,
+                                                                 alpha: test_alpha,
                                                                  is_train: True})
         # [gen_images] = sess.run([fake_image],feed_dict={random_input: test_noise,alpha:test_alpha,is_train: True})
         print 'epoch %d test: d_loss:%f,g_loss:%f' % (i, test_dLoss, test_gLoss)
-        gen_images = np.asarray(gen_images, dtype=np.float32)
-        curr_folder = os.path.join(args.model_dir, str(i))
-        if os.path.exists(curr_folder):
-            shutil.rmtree(curr_folder)
-        os.mkdir(curr_folder)
-        for m in range(gen_images.shape[0]):
-            save_img(gen_images[m], curr_folder, m)
+        gen_images = np.asarray(gen_images, dtype=np.float32).reshape(
+            [gen_images.shape[0], gen_images.shape[1], gen_images.shape[2]])
+        curr_path = os.path.join(args.model_dir, str(i) + '.jpg')
+        render_fonts_image(gen_images, curr_path, 10)
         # save check point every epoch
         saver.save(sess, args.model_dir + '/wgangp_' + str(i) + '.cptk')
 
 
 def infer(args):
     random_dim = args.rand_dim  # random input noise dimension
+    sample_num = 100
     with tf.variable_scope('input'):
         random_input = tf.placeholder(tf.float32, shape=[None, random_dim], name='rand_input')
         is_train = tf.placeholder(tf.bool, name='is_train')
-    fake_image = generator(random_input,random_dim, is_train)
+    fake_image = generator(random_input, random_dim, is_train)
     sess = tf.Session()
     saver = tf.train.Saver(write_version=tf.train.SaverDef.V1)
     model_path = tf.train.latest_checkpoint(args.model_dir, latest_filename=None)
     saver.restore(sess, model_path)
-    test_noise = np.random.uniform(-1.0, 1.0, size=[10, random_dim]).astype(np.float32)
+    test_noise = np.random.uniform(-1.0, 1.0, size=[sample_num, random_dim]).astype(np.float32)
     [gen_images] = sess.run([fake_image], feed_dict={random_input: test_noise, is_train: True})
-    gen_images = np.asarray(gen_images, dtype=np.float32)
-    curr_folder = os.path.join(args.model_dir, 'infer')
-    if os.path.exists(curr_folder):
-        shutil.rmtree(curr_folder)
-    os.mkdir(curr_folder)
-    for m in range(gen_images.shape[0]):
-        save_img(gen_images[m], curr_folder, m)
-    print 'image generation success, check %s to see results' % curr_folder
+    gen_images = np.asarray(gen_images, dtype=np.float32).reshape(
+        [gen_images.shape[0], gen_images.shape[1], gen_images.shape[2]])
+    curr_path = os.path.join(args.model_dir, 'infer.jpg')
+    render_fonts_image(gen_images, curr_path, 10)
+    print 'image generation success, check %s to see results' % curr_path
 
 
 if __name__ == "__main__":
