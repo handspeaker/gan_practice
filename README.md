@@ -5,8 +5,8 @@ dcgan,wgan and improved wgan implementation by tensorflow
 download MNIST data from http://yann.lecun.com/exdb/mnist/ and unzip data to some dir,for example
 ```sh
 data
- 10k-images-idx3-ubyte
- train-images-idx3-ubyte
+|__ 10k-images-idx3-ubyte
+|__ train-images-idx3-ubyte
 ```
 
 # training
